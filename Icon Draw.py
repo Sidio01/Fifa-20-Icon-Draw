@@ -20,49 +20,69 @@ def icon_choice(squad, count):
         pass
 
 
+def player_choice(squad, count):
+    try:
+        for _ in range(count):
+            player = random.choice(squad)
+            team1_name.append(player)
+            squad.remove(player)
+            player = random.choice(squad)
+            team2_name.append(player)
+            squad.remove(player)
+            player = random.choice(squad)
+            team3_name.append(player)
+            squad.remove(player)
+            player = random.choice(squad)
+            team4_name.append(player)
+            squad.remove(player)
+    except IndexError:
+        pass
+
+
+# Разбивка игроков по позициям и качеству
 icon_keepers = ['E. Van Der Sar', 'L. Yashin', 'P. Schmeichel', 'J. Lehmann']
-icon_defenders = ['F. Baresi', 'C. Alberto', 'C. Puyol', 'B. Moore', 'J. Zanetti',
-                  'A. Nesta', 'L. Blanc', 'F. Hierro', 'M. Desailly', 'R. Carlos', 'R. Koeman', 'G. Zambrotta']
+icon_cb_defenders = ['F. Baresi',  'C. Puyol', 'B. Moore', 'A. Nesta',
+                     'F. Cannavaro', 'F. Hierro', 'M. Desailly',  'R. Koeman', ]
+icon_fb_defenders = ['C. Alberto', 'R. Carlos', 'J. Zanetti', 'G. Zambrotta']
 icon_midfielders = ['R. Baggio', 'R. Giggs', 'A. Pirlo', 'M. Laudrup', 'P. Scholes', 'G. Hagi',
                     'R. Pires',  'S. Gerrard', 'P. Nedved', 'C. Seedors', 'M. Ballack', 'Socrates',
-                    'J. Litmanen', 'J. Okocha', 'F. Rijkaard', 'M. Overmars', 'Deco', 'L. Matthaus', 'R. Costa',
+                    'J. Litmanen', 'J. Okocha', 'F. Rijkaard', 'M. Overmars', 'Deco', 'E. Petit', 'R. Costa',
                     'R. Keane', 'F. Lampard','C. Makelele', 'S. Veron', 'P. Guardiola', 'G. Gattuso',
                     'H. Nakata']
-icon_strikers = ['Ronaldinho',  'M. Garrincha', 'M. Van Basten', 'G. Best', 'T. Henry',  'L. Figo', 'A. Del Piero',
+icon_strikers = ['Kaka',  'M. Garrincha', 'M. Van Basten', 'G. Best', 'T. Henry',  'L. Figo', 'A. Del Piero',
                  'G. Lineker', 'E. Butragueno', 'R. Van Nistelrooy', 'D. Bergkamp', 'H. Stoichkov', 'Rivaldo', 'Raul',
                  'H. Sanchez', 'M. Owen', 'A. Shearer', 'A. Shevchenko', 'P. Kluivert', 'D. Trezeguet',
                  'M. Klose', 'I. Rush', 'D. Drogba', 'F. Inzaghi', 'H. Larsson', 'H. Crespo', 'L. Hernandez', 'G. Zola',
                  'C. Vieri', 'J. Barnes', 'I. Wright']
-icon_best_defenders = ['P. Maldini', 'R. Ferdinand', 'F. Cannavaro', 'S. Campbell']
-icon_best_def_midfielders = ['P. Vieira', 'R. Gullit', 'M. Essien', 'E. Petit']
-icon_best_att_midfielders = ['Z. Zidane', 'Pele', 'D. Maradona', 'Kaka']
+icon_best_defenders = ['P. Maldini', 'R. Ferdinand', 'L. Blanc', 'S. Campbell']
+icon_best_def_midfielders = ['P. Vieira', 'R. Gullit', 'M. Essien', 'L. Matthaus']
+icon_best_att_midfielders = ['Z. Zidane', 'Pele', 'D. Maradona', 'Ronaldinho']
 icon_best_strikers = ['Ronaldo', 'J. Cruyff', 'Eusebio', 'K. Dalglish']
-print(len(icon_midfielders))
-print(len(icon_strikers))
-print(len(icon_keepers) + len(icon_defenders) + len(icon_midfielders)+ len(icon_strikers) + len(icon_best_defenders)
-      + len(icon_best_def_midfielders) + len(icon_best_att_midfielders) + len(icon_best_strikers))
-print('Введите участников первой команды:')
-# team1_name = input()
-team1_name = 'Тимур и Диман'
-print('Введите участников второй команды:')
-# team2_name = input()
-team2_name = 'Леха и Илюха'
-print('Введите участников третьей команды:')
-# team3_name = input()
-team3_name = 'Женя и Руб'
-print('Введите участников четвертой команды:')
-# team4_name = input()
-team4_name = 'Денис и Саня'
+
+# Объявление команд и ввод участников
 team1_squad = []
 team2_squad = []
 team3_squad = []
 team4_squad = []
+team1_name = []
+team2_name = []
+team3_name = []
+team4_name = []
+print('Введите имена сильных игроков:')
+good_players = input().split()
+print('Введите имена новичков:')
+bad_players = input().split()
+
+# Жеребьевка участников
+player_choice(good_players, 1)
+player_choice(bad_players, 1)
 
 # Выбор вратарей
 icon_choice(icon_keepers, 1)  # всего 4, остаток 0
 
 # Выбор защитников
-icon_choice(icon_defenders, 3)  # всего 12, остаток 0
+icon_choice(icon_cb_defenders, 2)  # всего 8, остаток 0
+icon_choice(icon_fb_defenders, 1)  # всего 4, остаток 0
 icon_choice(icon_best_defenders, 1)
 
 # Выбор полузащитников
