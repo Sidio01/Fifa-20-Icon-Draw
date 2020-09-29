@@ -1,4 +1,5 @@
 import random
+from prettytable import PrettyTable
 
 
 def icon_choice(squad, count):
@@ -95,18 +96,26 @@ icon_choice(icon_strikers, 4)  # всего 31, остаток 15
 icon_choice(icon_best_strikers, 1)
 
 # Вывод жеребьевки
-print('-' * 95)
-print('{:<25s}{:<25s}{:<25s}{:<25s}'.format(str(team1_name), str(team2_name), str(team3_name), str(team4_name)))
-print('-' * 95)
+# print('-' * 95)
+# print('{:<25s}{:<25s}{:<25s}{:<25s}'.format(str(team1_name), str(team2_name), str(team3_name), str(team4_name)))
+# print('-' * 95)
+table = PrettyTable()
+table.field_names = [team1_name, team2_name, team3_name, team4_name]
 teams = [team1_squad, team2_squad, team3_squad, team4_squad]
 i = 0
 for _ in range(len(team1_squad)):
-    print('{:<25s}{:<25s}{:<25s}{:<25s}'.format(str(teams[0][i]), str(teams[1][i]), str(teams[2][i]), str(teams[3][i])))
+    # print('{:<25s}{:<25s}{:<25s}{:<25s}'.format(str(teams[0][i]), str(teams[1][i]), str(teams[2][i]), str(teams[3][i])))
+    table.add_row([str(teams[0][i]), str(teams[1][i]), str(teams[2][i]), str(teams[3][i])])
     i += 1
     if i == 1:
-        print('-' * 95)
+        table.add_row(['-' * 10, '-' * 10, '-' * 10, '-' * 10])
+        # print('-' * 95)
     if i == 5:
-        print('-' * 95)
+        table.add_row(['-' * 10, '-' * 10, '-' * 10, '-' * 10])
+        # print('-' * 95)
     if i == 13:
-        print('-' * 95)
-print('-' * 95)
+        table.add_row(['-' * 10, '-' * 10, '-' * 10, '-' * 10])
+        # print('-' * 95)
+# print('-' * 95)
+table.align = 'l'
+print(table)
